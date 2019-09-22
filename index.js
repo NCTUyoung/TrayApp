@@ -1,5 +1,6 @@
 const $ = require('jquery')
 const mm = require('music-metadata')
+const {ipcRenderer} =  require('electron')
 
 let songData = {
     path:[],
@@ -52,6 +53,7 @@ function playSong(index) {
     currentIndex = index
     updatePlayButton()
     timer = setInterval(updateTime,1000)
+    ipcRenderer.send('playing',songData.title[index])
 
 }
 function play() {
